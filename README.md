@@ -1,7 +1,15 @@
-# React App in Bun
+# Random Meme Web
+A random meme web. Pick a meme a day for better life ~~~
 
-My React app custom template setup in Bun
+## Tools
+- [React](https://react.dev/)
+- [Bun](https://bun.sh/)
+- [GCP](https://cloud.google.com/) - [Cloud Storage](https://cloud.google.com/products/storage/)
 
+## Functionalities
+- Show a meme randomly
+
+## Local development
 To install dependencies:
 
 ```bash
@@ -14,5 +22,7 @@ To run in local development:
 bun run dev
 ```
 Then open [http://localhost:3000](http://localhost:3000) within your browser.
+
+---
 
 > This project was created using `bun init` in [Bun](https://bun.sh) v1.0.3
