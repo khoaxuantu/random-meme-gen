@@ -1,0 +1,16 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: lightgray;
+}
+
+.container {
+  height: 100px;
+  background-color: cyan;
+}
+
+/*# sourceMappingURL=style.css.map */

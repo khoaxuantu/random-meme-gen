@@ -25,7 +25,8 @@
       "@public/*": ["public/*"],
       "@configs/*": ["configs/*"],
       "@components/*": ["src/components/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@scss/*": ["src/scss/*"],
     }
   }
 }
