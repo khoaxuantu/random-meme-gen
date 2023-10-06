@@ -1,6 +1,3 @@
-const prefix = '\x1b[96m[' + new Date().toLocaleString() + ']\x1b[0m -';
-console.log = console.log.bind( console, prefix );
-
 /**
  * A welcome log. It will display whenever the project is compiled successfully
  */
@@ -16,4 +13,9 @@ Now you can view the project in your browser:
 🚀🚀🚀 Have fun ~
 
   `);
+}
+
+export function responseLog(res: Response, reqPath: string): Response {
+  console.log(`[Response | ${res.status}] - ${reqPath}`);
+  return res;
 }
