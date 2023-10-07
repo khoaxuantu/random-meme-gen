@@ -1,0 +1,4 @@
+@mixin center-block($m: auto, $mode: "margin") {
+  #{$mode}-left: $m;
+  #{$mode}-right: $m;
+}

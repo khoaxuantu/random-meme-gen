@@ -9,9 +9,9 @@
 
 body {
   background-color: lightgray;
+  font-family: var.$default-font;
 }
 
 .container {
-  height: 100px;
-  background-color: cyan;
+  @include utils.center-block;
 }
