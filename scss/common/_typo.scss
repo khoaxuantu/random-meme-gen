@@ -1,0 +1,70 @@
+@use "sass:list";
+@use "sass:math";
+@use "sass:map";
+@use "utils";
+
+$-scaleRatio: (
+  'golden': 1.618,
+  'classical': 2
+);
+$-scaleStep: (
+  'monotonic': 1,
+  'ditonic': 2,
+  'tritonic': 3,
+  'tetratonic': 4,
+  'pentatonic': 5,
+  'hexatonic': 6,
+  'heptatonic': 7,
+  'octatonic': 8,
+  'chromatic': 12
+);
+/* footnote endnote caption body-text blockquote h6 h5 h4 h3 h2 h1 */
+$-compositionSeries: (
+  'fibonacci': (-2, -1, -1, 1, 1, 1, 2, 3, 5, 8, 13),
+  'lucas': (-2, -1, -1, 1, 1, 1, 3, 4, 7, 11, 18),
+  'pentagonal': (-2, -1, -1, 1, 1, 1, 2, 5, 7, 12, 15),
+  'triangular number': (-2, -1, -1, 1, 1, 1, 1, 3, 3, 6, 15)
+);
+$-textLabel: (
+  '.footnote',
+  '.endnote',
+  '.caption',
+  'body',
+  'blockquote',
+  'h6', 'h5', 'h4', 'h3', 'h2', 'h1'
+);
+
+@mixin createTypoScale($ratio: 'classical', $steps: 'pentatonic', $composition: 'fibonacci') {
+  $i: 1;
+  @each $type in $-textLabel {
+    #{$type} {
+      font-size: calculateScale($i, $ratio, $steps, $composition);
+    }
+    $i: $i + 1;
+  }
+}
+
+/*
+Formula: Fi = F0 * r^(i/n)
+  - i: The ith note
+  - n: The number of steps for each interval. An interval in the classical typography is defined as
+  6->12, 12->24, etc...
+  - r: The ratio in a typography
+  - F0: The fundamental frequency. In the classical typography, the fundamental frequency is *pica*, as
+  1 pica = 16px = 12pt = 1rem
+  - Fi: The ith note
+
+@param index - i
+@param ratio - r
+@param steps - n
+@param composition - Type of the composition series
+*/
+@function calculateScale($i, $ratio, $steps, $composition) {
+  @return 1rem * utils.decimalRound(math.pow(
+    map.get($-scaleRatio, $ratio),
+    math.div(
+      list.nth(map.get($-compositionSeries, $composition), $i) - 1,
+      map.get($-scaleStep, $steps)
+    )
+  ), 3);
+}

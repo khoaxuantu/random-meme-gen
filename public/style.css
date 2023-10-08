@@ -1,6 +1,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 /* Font */
 /* Color */
+/* footnote endnote caption body-text blockquote h6 h5 h4 h3 h2 h1 */
+/*
+Formula: Fi = F0 * r^(i/n)
+  - i: The ith note
+  - n: The number of steps for each interval. An interval in the classical typography is defined as
+  6->12, 12->24, etc...
+  - r: The ratio in a typography
+  - F0: The fundamental frequency. In the classical typography, the fundamental frequency is *pica*, as
+  1 pica = 16px = 12pt = 1rem
+  - Fi: The ith note
+
+@param index - i
+@param ratio - r
+@param steps - n
+@param composition - Type of the composition series
+*/
+.footnote {
+  font-size: 0.749rem;
+}
+
+.endnote {
+  font-size: 0.825rem;
+}
+
+.caption {
+  font-size: 0.825rem;
+}
+
+body {
+  font-size: 1rem;
+}
+
+blockquote {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+h5 {
+  font-size: 1.101rem;
+}
+
+h4 {
+  font-size: 1.212rem;
+}
+
+h3 {
+  font-size: 1.47rem;
+}
+
+h2 {
+  font-size: 1.961rem;
+}
+
+h1 {
+  font-size: 3.174rem;
+}
+
 * {
   padding: 0;
   margin: 0;

@@ -1,5 +1,8 @@
 @use 'common/utils';
 @use 'common/var';
+@use 'common/typo';
+
+@include typo.createTypoScale($ratio: 'golden');
 
 * {
   padding: 0;

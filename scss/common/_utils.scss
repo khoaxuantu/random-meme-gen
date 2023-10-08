@@ -1,4 +1,11 @@
+@use 'sass:math';
+
 @mixin center-block($m: auto, $mode: "margin") {
   #{$mode}-left: $m;
   #{$mode}-right: $m;
+}
+
+@function decimalRound($n, $fractionDigits: 0) {
+  $power: math.pow(10, $fractionDigits);
+  @return math.div(math.round($n * $power), $power);
 }
