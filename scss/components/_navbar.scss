@@ -1,0 +1,24 @@
+@use '../common/var' as *;
+
+.sl {
+  &-c {
+    &-navbar {
+      background-color: $gray-1;
+      border-bottom: 1px solid $gray-2;
+
+      ul {
+        list-style: none;
+      }
+
+      li {
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+      }
+    }
+  }
+}

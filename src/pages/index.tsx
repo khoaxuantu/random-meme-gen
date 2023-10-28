@@ -2,6 +2,7 @@ import React from "react";
 import ImageContainer from "@components/ImageContainer";
 import RootLayout from "@/layout";
 import { Metadata } from "@/utils/Metadata";
+import Navbar from "@/components/Navbar";
 
 const metadata: Metadata = {
   title: "Lmao Tus?",
@@ -16,6 +17,7 @@ export default function App() {
     <>
       <React.StrictMode>
         <RootLayout metadata={metadata}>
+          <Navbar />
           <ImageContainer />
         </RootLayout>
       </React.StrictMode>

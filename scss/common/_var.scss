@@ -3,13 +3,7 @@
 /* Font */
 $default-font: -apple-system,BlinkMacSystemFont,"Inter",sans-serif;
 
-$default-header-font-size: clamp(1.25rem, 1.29rem + 1.07vw, 1.75rem);
-$default-body-font-size: clamp(1rem, 0.96rem + 0.18vw, 1.125rem);
-
-$font-size-system: (
-  "h1": 5.2917,
-  "h2": 2.6458
-);
-
 /* Color */
 $primary-color: #d3d3d3;
+$gray-1: #F2F2F2;
+$gray-2: #C0C0C0;

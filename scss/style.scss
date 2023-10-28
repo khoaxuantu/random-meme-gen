@@ -1,8 +1,7 @@
-@use 'common/utils';
-@use 'common/var';
-@use 'common/typo';
+@use 'common' as *;
+@use 'components' as *;
 
-@include typo.createTypoScale($ratio: 'golden');
+@include createTypoScale($ratio: 'golden');
 
 * {
   padding: 0;
@@ -11,10 +10,9 @@
 }
 
 body {
-  background-color: lightgray;
-  font-family: var.$default-font;
+  font-family: $default-font;
 }
 
 .container {
-  @include utils.center-block;
+  @include center-block;
 }
