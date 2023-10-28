@@ -14,11 +14,12 @@
 
   &-c {
     &-blockquote {
-      @include center-block-vertical;
+      padding-right: 0;
     }
 
     &-button {
-      padding: 1rem 2rem;
+      width: 40%;
+      aspect-ratio: 3/1;
       border: none;
       border-radius: 5px;
       background-color: $green-1;
@@ -40,9 +41,15 @@
 @media (min-width: 768px) {
   .main-l-container {
     @include center-block(10%, 'padding');
+    text-align: start;
   }
 
-  .main-c-button {
-    padding: 2rem 4rem;
+  .main-c{
+    &-blockquote {
+      padding-right: 1.5rem;
+    }
+    &-button {
+      width: 60%;
+    }
   }
 }
