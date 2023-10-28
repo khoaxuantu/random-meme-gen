@@ -41,7 +41,7 @@ export default function Navbar() {
           <a href="/">Gallery</a>
         </li>
         <li className="p-2 sl-c-navbar__item">
-          <a href="https://xuankhoatu.com/about" target="_blank">Profile</a>
+          <a href="https://xuankhoatu.com/about" target="_blank">Tuslipid</a>
         </li>
       </ul>
     </nav>
