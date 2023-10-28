@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 /* Font */
 /* Color */
 /* Bootstrap-like spacing */
@@ -265,15 +271,42 @@ Formula: Fi = F0 * r^(i/n)
 .sl-c-navbar ul {
   list-style: none;
 }
-.sl-c-navbar li {
-  display: inline-block;
-  text-decoration: none;
-}
 .sl-c-navbar a {
   text-decoration: none;
   color: black;
 }
+.sl-c-navbar__expand-btn {
+  position: relative;
+  left: 50%;
+  border: none;
+  margin-top: 1.5rem;
+}
+.sl-c-navbar__expand-btn::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-top: 12px solid black;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+}
+.sl-c-navbar__item {
+  display: none;
+}
+.sl-c-navbar .display {
+  display: list-item;
+}
+.sl-c-navbar .hide {
+  display: none;
+}
 
+@media (min-width: 768px) {
+  .sl-c-navbar li {
+    display: inline-block;
+  }
+  .sl-c-navbar__expand-btn::after {
+    display: none;
+  }
+}
 .footnote {
   font-size: 0.749rem;
 }
@@ -316,12 +349,6 @@ h2 {
 
 h1 {
   font-size: 3.174rem;
-}
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
 }
 
 body {

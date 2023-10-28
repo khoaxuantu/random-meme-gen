@@ -10,15 +10,50 @@
         list-style: none;
       }
 
-      li {
-        display: inline-block;
-        text-decoration: none;
-      }
-
       a {
         text-decoration: none;
         color: black;
       }
+
+      &__expand-btn {
+        position: relative;
+        left: 50%;
+        border: none;
+        margin-top: 1.5rem;
+      }
+
+      &__expand-btn::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 12px solid black;
+        border-left: 12px solid transparent;
+        border-right: 12px solid transparent;
+      }
+
+      &__item {
+        display: none;
+      }
+
+      .display {
+        display: list-item;
+      }
+
+      .hide {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .sl-c-navbar {
+    li {
+      display: inline-block;
+    }
+
+    &__expand-btn::after {
+      display: none;
     }
   }
 }

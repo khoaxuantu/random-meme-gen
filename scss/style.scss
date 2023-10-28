@@ -1,13 +1,8 @@
+@use 'reset';
 @use 'common' as *;
 @use 'components' as *;
 
 @include createTypoScale($ratio: 'golden');
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 
 body {
   font-family: $default-font;
