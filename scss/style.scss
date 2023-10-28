@@ -1,6 +1,7 @@
 @use 'reset';
 @use 'common' as *;
 @use 'components' as *;
+@use 'pages';
 
 @include createTypoScale($ratio: 'golden');
 
@@ -8,6 +9,7 @@ body {
   font-family: $default-font;
 }
 
-.container {
-  @include center-block;
+img {
+  width: 100%;
+  height: auto;
 }

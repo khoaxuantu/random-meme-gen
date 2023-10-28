@@ -1,0 +1,9 @@
+@use '../common/utils';
+
+.sl {
+  &-l {
+    &-container {
+      @include utils.center-block;
+    }
+  }
+}

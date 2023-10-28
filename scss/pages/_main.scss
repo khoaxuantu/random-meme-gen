@@ -1,0 +1,48 @@
+@use '../common/utils' as *;
+@use '../common/var' as *;
+
+.main {
+  &-l {
+    &-container {
+      text-align: center;
+
+      &__body {
+        justify-content: space-between;
+      }
+    }
+  }
+
+  &-c {
+    &-blockquote {
+      @include center-block-vertical;
+    }
+
+    &-button {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 5px;
+      background-color: $green-1;
+      cursor: pointer;
+    }
+
+    &-image__box {
+      @include center-block-vertical;
+      max-width: 720px;
+
+      img {
+        border-radius: 10px;
+        transition: all 1s;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .main-l-container {
+    @include center-block(10%, 'padding');
+  }
+
+  .main-c-button {
+    padding: 2rem 4rem;
+  }
+}

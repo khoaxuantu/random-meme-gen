@@ -15,6 +15,7 @@ const DEFAULT_METADATA: Metadata = {
 }
 
 export default function RootLayout(props: RootLayoutProps) {
+  const metadata = { ...DEFAULT_METADATA, ...props.metadata };
   return(
     <html lang='en'>
       <head>
@@ -26,10 +27,10 @@ export default function RootLayout(props: RootLayoutProps) {
         <link rel="icon" href="logo/favicon-32x32.png" type="image/png" />
         <link rel="manifest" href="logo/site.webmanifest" />
 
-        <title>{ props.metadata?.title ?? DEFAULT_METADATA.title }</title>
-        <meta name="title" content={ props.metadata?.metaTitle ?? DEFAULT_METADATA.metaTitle } />
-        <meta name="description" content={ props.metadata?.description ?? DEFAULT_METADATA.description } />
-        <meta name='author' content={ props.metadata?.author ?? DEFAULT_METADATA.author } />
+        <title>{ metadata.title }</title>
+        <meta name="title" content={ metadata.metaTitle } />
+        <meta name="description" content={ metadata.description } />
+        <meta name='author' content={ metadata.author } />
 
         <link rel="stylesheet" href="style.css" />
       </head>
