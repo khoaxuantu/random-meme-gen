@@ -1,7 +1,8 @@
 import App from './pages/App';
+import { Metadata } from './utils/Metadata';
 
 interface RootLayoutProps {
-  title?: string,
+  metadata: Metadata,
   children: React.ReactNode
 }
 
@@ -17,11 +18,10 @@ export default function RootLayout(props: RootLayoutProps) {
         <link rel="icon" href="logo/favicon-32x32.png" type="image/png" />
         <link rel="manifest" href="logo/site.webmanifest" />
 
-        <title>{ props.title || "Page" }</title>
-        <meta name="title" content='Lmao Tuslipid???' />
-        <meta name="description" content="A random meme picker created by Xuan Khoa Tu Nguyen.
-          Pick a meme a day for happier life ~" />
-        <meta name='author' content='Xuan Khoa Tu Nguyen' />
+        <title>{ props.metadata.title || "Page" }</title>
+        <meta name="title" content={props.metadata.metaTitle} />
+        <meta name="description" content={props.metadata.description} />
+        <meta name='author' content={props.metadata.author} />
 
         <link rel="stylesheet" href="style.css" />
       </head>
