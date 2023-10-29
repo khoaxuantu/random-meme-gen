@@ -3,4 +3,5 @@ export interface Metadata {
   metaTitle?: string,
   description?: string,
   author?: string,
+  image?: string,
 }

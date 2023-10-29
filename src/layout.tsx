@@ -11,7 +11,8 @@ const DEFAULT_METADATA: Metadata = {
   metaTitle: "Lmao Tuslipid???",
   description: `A random meme picker created by Xuan Khoa Tu Nguyen.
   Pick a meme a day for a happier life ~`,
-  author: "Xuan Khoa Tu Nguyen"
+  author: "Xuan Khoa Tu Nguyen",
+  image: "logo/seo.png"
 }
 
 export default function RootLayout(props: RootLayoutProps) {
@@ -31,6 +32,21 @@ export default function RootLayout(props: RootLayoutProps) {
         <meta name="title" content={ metadata.metaTitle } />
         <meta name="description" content={ metadata.description } />
         <meta name='author' content={ metadata.author } />
+
+        <meta itemProp='name' content={ metadata.metaTitle } />
+        <meta itemProp='description' content={ metadata.description } />
+        <meta itemProp='image' content={ metadata.image } />
+
+        <meta property='og:type' content='website' />
+        <meta property='og:title' content={ metadata.metaTitle } />
+        <meta property='og:image' content={ metadata.image } />
+        <meta property='og:description' content={ metadata.description } />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name='twitter:creator' content={ metadata.author } />
+        <meta name='twitter:title' content={ metadata.metaTitle } />
+        <meta name='twitter:description' content={ metadata.description } />
+        <meta name='twitter:image' content={ metadata.image } />
 
         <link rel="stylesheet" href="style.css" />
       </head>
