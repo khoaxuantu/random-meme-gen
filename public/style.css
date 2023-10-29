@@ -379,6 +379,7 @@ Formula: Fi = F0 * r^(i/n)
   margin-top: auto;
   margin-bottom: auto;
   max-width: 720px;
+  max-height: 900px;
 }
 .main-c-image__box img {
   border-radius: 10px;

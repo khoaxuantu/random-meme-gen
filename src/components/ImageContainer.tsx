@@ -1,6 +1,14 @@
 import { useState } from "react";
 
+const CDN_URL = "https://cdn.xuankhoatu.com";
+
 export default function ImageContainer() {
+  const [ imgURL, setImageURL ] = useState("save_in_prod.webp");
+
+  function pickImgHandler() {
+    const id = getRandom(860);
+    setImageURL(`${CDN_URL}/lmao/${id}.jpg`);
+  }
 
   return(
     <div className="sl-l-container main-l-container m-5">
@@ -11,15 +19,19 @@ export default function ImageContainer() {
             All of the memes in my collection are stolen from the internet
           </blockquote>
           <div>
-            <button className="main-c-button">
+            <button className="main-c-button" onClick={pickImgHandler}>
               Pick one...
             </button>
           </div>
         </div>
         <div className="col-8 main-c-image__box">
-          <img src="save_in_prod.png" alt="" />
+          <img src={imgURL} alt="" />
         </div>
       </div>
     </div>
   );
+}
+
+function getRandom(n: number) {
+  return Math.ceil(Math.random() * n);
 }
