@@ -24,6 +24,10 @@
       border-radius: 5px;
       background-color: $green-1;
       cursor: pointer;
+
+      &:hover {
+        box-shadow: 0px 4px 8px $green-1
+      }
     }
 
     &-image__box {

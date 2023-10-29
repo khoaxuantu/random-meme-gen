@@ -375,6 +375,9 @@ Formula: Fi = F0 * r^(i/n)
   background-color: #AFE1AF;
   cursor: pointer;
 }
+.main-c-button:hover {
+  box-shadow: 0px 4px 8px #AFE1AF;
+}
 .main-c-image__box {
   margin-top: auto;
   margin-bottom: auto;
