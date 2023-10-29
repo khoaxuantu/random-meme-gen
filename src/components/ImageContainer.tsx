@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-const CDN_URL = "https://cdn.xuankhoatu.com";
+const CDN_URL = "https://storage.googleapis.com/tusss_memes/lmao";
 
 export default function ImageContainer() {
   const [ imgURL, setImageURL ] = useState("save_in_prod.webp");
 
   function pickImgHandler() {
     const id = getRandom(860);
-    setImageURL(`${CDN_URL}/lmao/${id}.jpg`);
+    setImageURL(`${CDN_URL}/${id}.jpg`);
   }
 
   return(
