@@ -14,13 +14,15 @@ const PROJECT_ROOT = import.meta.dir;
 const PUBLIC_DIR = path.resolve(PROJECT_ROOT, "public");
 const BUILD_DIR = path.resolve(PROJECT_ROOT, "build");
 
+console.log("Environment: " + process.env.NODE_ENV);
+
 const pageRouter = new Bun.FileSystemRouter({
   dir: './src/pages',
   style: 'nextjs',
 });
 // console.log("🚀 ~ file: index.tsx:22 ~ pageRouter:", pageRouter)
 
-await Bun.build({
+const result = await Bun.build({
   entrypoints: [
     PROJECT_ROOT + '/hydrate.tsx',
     ...Object.values(pageRouter.routes)
@@ -32,6 +34,14 @@ await Bun.build({
     "Bun.env.CDN_URL": JSON.stringify(Bun.env.CDN_URL),
   }
 })
+if (!result.success) {
+  console.error("Build failed");
+  for (const message of result.logs) {
+    console.error(message);
+  }
+} else {
+  console.log("Build successfully");
+}
 
 const buildRouter= new Bun.FileSystemRouter({
   dir: BUILD_DIR + '/src/pages',
