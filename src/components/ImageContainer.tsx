@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const CDN_URL = "https://storage.googleapis.com/tusss_memes/lmao";
+const CDN_URL = Bun.env.CDN_URL;
 
 export default function ImageContainer() {
   const [ imgURL, setImageURL ] = useState("save_in_prod.webp");

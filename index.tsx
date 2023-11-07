@@ -2,7 +2,7 @@ import { renderToReadableStream } from "react-dom/server";
 import { hiConsole, responseLog } from "@configs/CustomLog";
 import * as path from "path";
 import { statSync } from "fs";
-import App from "@/pages/App";
+import App from "@/pages";
 
 const PORT = process.env.PORT || 3000;
 const header = {
@@ -11,16 +11,14 @@ const header = {
   }
 };
 const PROJECT_ROOT = import.meta.dir;
-console.log("🚀 ~ file: index.tsx:14 ~ PROJECT_ROOT:", PROJECT_ROOT)
 const PUBLIC_DIR = path.resolve(PROJECT_ROOT, "public");
-console.log("🚀 ~ file: index.tsx:15 ~ PUBLIC_DIR:", PUBLIC_DIR)
 const BUILD_DIR = path.resolve(PROJECT_ROOT, "build");
 
 const pageRouter = new Bun.FileSystemRouter({
   dir: './src/pages',
   style: 'nextjs',
 });
-console.log("🚀 ~ file: index.tsx:22 ~ pageRouter:", pageRouter)
+// console.log("🚀 ~ file: index.tsx:22 ~ pageRouter:", pageRouter)
 
 await Bun.build({
   entrypoints: [
@@ -29,14 +27,17 @@ await Bun.build({
   ],
   outdir: BUILD_DIR,
   target: 'browser',
-  splitting: true
+  splitting: true,
+  define: {
+    "Bun.env.CDN_URL": JSON.stringify(Bun.env.CDN_URL),
+  }
 })
 
 const buildRouter= new Bun.FileSystemRouter({
   dir: BUILD_DIR + '/src/pages',
   style: 'nextjs'
 })
-console.log("🚀 ~ file: index.tsx:39 ~ buildRouter:", buildRouter)
+// console.log("🚀 ~ file: index.tsx:39 ~ buildRouter:", buildRouter)
 
 function serveFromDir(config: {
   directory: string,
@@ -59,7 +60,7 @@ function serveFromDir(config: {
 async function processPagesReq(req: Request) {
   const match = pageRouter.match(req);
   if (match) {
-    console.log("🚀 ~ file: index.tsx:62 ~ processPagesReq ~ req:", req)
+    // console.log("🚀 ~ file: index.tsx:62 ~ processPagesReq ~ req:", req)
     const buildMatch = buildRouter.match(req);
     if (!buildMatch) {
       return new Response('Unknown Error', { status: 500 });
@@ -77,6 +78,7 @@ async function processPagesReq(req: Request) {
 
 Bun.serve({
   async fetch(req) {
+    // console.log("🚀 ~ file: index.tsx:78 ~ fetch ~ req:", req)
     let reqPath = new URL(req.url).pathname;
     console.log(`[Request  | ${req.method}] - ${reqPath}`);
 
@@ -85,18 +87,19 @@ Bun.serve({
 
     if (reqPath === "/") {
       const stream = await renderToReadableStream(<App />, {
-        bootstrapScriptContent: "globalThis.PATH_TO_PAGE = '/App.js'",
+        bootstrapScriptContent: "globalThis.PATH_TO_PAGE = '/index.js'",
         bootstrapModules: ['/hydrate.js']
       });
       return responseLog(new Response(stream, header), reqPath);
+    }
+    if (reqPath.includes('scss')) {
+      const scssRes = serveFromDir({ directory: PROJECT_ROOT, path: reqPath });
+      if (scssRes) return responseLog(scssRes, reqPath);
     }
 
     // Check Public
     const publicRes = serveFromDir({ directory: PUBLIC_DIR, path: reqPath, });
     if (publicRes) return responseLog(publicRes, reqPath);
-
-    const scssRes = serveFromDir({ directory: PROJECT_ROOT + '/scss', path: reqPath });
-    if (scssRes) return responseLog(scssRes, reqPath);
 
     // Check Build
     const buildRes = serveFromDir({ directory: BUILD_DIR, path: reqPath });
