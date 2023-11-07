@@ -90,7 +90,7 @@ Bun.serve({
   async fetch(req) {
     // console.log("🚀 ~ file: index.tsx:78 ~ fetch ~ req:", req)
     let reqPath = new URL(req.url).pathname;
-    console.log(`[Request  | ${req.method}] - ${reqPath}`);
+    // console.log(`[Request  | ${req.method}] - ${reqPath}`);
 
     const res = await processPagesReq(req);
     if (res) return responseLog(res, reqPath);

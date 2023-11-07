@@ -16,7 +16,7 @@ Now you can view the project in your browser:
 }
 
 export function responseLog(res: Response, reqPath: string): Response {
-  const status = (res.status >= 400) ? `\x1B[31m${res.status}\x1B[0m` : `${res.status}`;
-  console.log(`[Response | ${status}]`);
+  // const status = (res.status >= 400) ? `\x1B[31m${res.status}\x1B[0m` : `${res.status}`;
+  // console.log(`[Response | ${status}]`);
   return res;
 }
