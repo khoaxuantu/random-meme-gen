@@ -1,12 +1,13 @@
 import { useState } from "react";
 
 const CDN_URL = Bun.env.CDN_URL;
+const TOTAL_MEMES = 909;
 
 export default function ImageContainer() {
   const [ imgURL, setImageURL ] = useState("save_in_prod.webp");
 
   function pickImgHandler() {
-    const id = getRandom(860);
+    const id = getRandom(TOTAL_MEMES);
     setImageURL(`${CDN_URL}/${id}.jpg`);
   }
 
@@ -17,6 +18,8 @@ export default function ImageContainer() {
         <h3 className="mb-5">Welcome to my random meme picker 😃</h3>
           <blockquote className="mb-4">
             All of the memes in my collection are stolen from the internet
+            <br /><br />
+            Total: {TOTAL_MEMES}
           </blockquote>
           <div>
             <button className="main-c-button" onClick={pickImgHandler}>
