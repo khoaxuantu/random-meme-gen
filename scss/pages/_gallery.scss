@@ -1,0 +1,55 @@
+@use '../common/utils' as *;
+
+.gallery {
+  &-l {
+    &-container {
+      @include center-block($m: 10%);
+      @include center-block-vertical($m: 5%);
+      // display: grid;
+      // grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      // grid-template-rows: repeat(auto-fit, minmax(260px, 1fr));
+      // grid-auto-flow: dense;
+      gap: 10px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
+
+  &-c {
+    &-cell {
+      flex: 1 1 auto;
+      height: 260px;
+      position: relative;
+      transition: all .2s;
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+      }
+
+      &__extend {
+        position: fixed !important;
+        width: 90%;
+        max-width: 720px;
+        height: 90%;
+        max-height: 100dvh;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 9999;
+        opacity: 1 !important;
+
+        img {
+          object-fit: contain;
+        }
+      }
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border-radius: 10px;
+      }
+    }
+  }
+}

@@ -1,7 +1,5 @@
 import { useState } from "react";
-
-const CDN_URL = Bun.env.CDN_URL;
-const TOTAL_MEMES = 909;
+import { CDN_URL, TOTAL_MEMES } from "@/utils/Common";
 
 export default function ImageContainer() {
   const [imgURL, setImageURL] = useState("save_in_prod.webp");

@@ -248,6 +248,23 @@
   padding: 3rem !important;
 }
 
+.fade-out {
+  opacity: 0.1;
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100dvw;
+  height: 100dvh;
+  opacity: 0.8;
+  background-color: #C0C0C0;
+  z-index: 2;
+}
+
 /* footnote endnote caption body-text blockquote h6 h5 h4 h3 h2 h1 */
 /*
 Formula: Fi = F0 * r^(i/n)
@@ -402,6 +419,47 @@ Formula: Fi = F0 * r^(i/n)
     width: 60%;
   }
 }
+.gallery-l-container {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.gallery-c-cell {
+  flex: 1 1 auto;
+  height: 260px;
+  position: relative;
+  transition: all 0.2s;
+}
+.gallery-c-cell img {
+  object-fit: cover;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.gallery-c-cell__extend {
+  position: fixed !important;
+  width: 90%;
+  max-width: 720px;
+  height: 90%;
+  max-height: 100dvh;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  opacity: 1 !important;
+}
+.gallery-c-cell__extend img {
+  object-fit: contain;
+}
+.gallery-c-cell:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+}
+
 .footnote {
   font-size: 0.749rem;
 }
