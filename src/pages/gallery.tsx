@@ -1,43 +1,44 @@
 import React, { useEffect, useState } from "react";
 import RootLayout from "@/layout";
-import { TOTAL_MEMES } from "@/utils/Common";
-import { ImageGallery, ImageGalleryProp } from "@/components/ImageGallery";
+import {
+  ImageGallery,
+  ImageGalleryProp,
+} from "@/components/gallery/ImageGallery";
 import { Metadata } from "@/utils/Metadata";
-
-const IMG_PER_PAGE = 10;
-
-interface paginateProp {
-  start: number;
-  end: number;
-}
+import { DescGallery } from "@/components/gallery/DescGallery";
+import { paginateProp } from "@/components/gallery/Common";
+import AscGallery from "@/components/gallery/AscGallery";
+import SortButton from "@/components/gallery/ButtonSort";
+import GoTopButton from "@/components/gallery/ButtonGoTop";
+import { ScrollToTop } from "@/utils/ScrollToTop";
 
 const metadata: Metadata = {
-  url: "https://meme.xuankhoatu.com/gallery/"
-}
+  url: "https://meme.xuankhoatu.com/gallery/",
+};
 
-// TODO sort options
+// TODO sort options (asc/desc)
 export default function Gallery() {
-  const [paginateCursor, setPaginateCursor] = useState<paginateProp>({
-    start: TOTAL_MEMES - IMG_PER_PAGE,
-    end: TOTAL_MEMES - IMG_PER_PAGE*2,
-  });
+  const [galleryType, setGalleryType] = useState<"desc" | "asc">("desc");
+  const gallery = selectGallery(galleryType);
+
+  const [paginateCursor, setPaginateCursor] = useState<paginateProp>(
+    gallery.initSecondPaginate()
+  );
   const [images, setImages] = useState<ImageGalleryProp[]>(
-    genImages({ start: TOTAL_MEMES, end: TOTAL_MEMES - IMG_PER_PAGE })
+    gallery.genImages(gallery.initFirstPaginate())
   );
 
   function paginateHandler() {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-
-    if (
-      scrollTop + clientHeight >= scrollHeight &&
-      paginateCursor.start > 0
-    ) {
-      setPaginateCursor({
-        start: paginateCursor.end,
-        end: paginateCursor.end - IMG_PER_PAGE,
-      });
-      setImages([...images, ...genImages(paginateCursor)]);
+    if (gallery.hasMore(paginateCursor)) {
+      setPaginateCursor(gallery.nextPaginate(paginateCursor));
+      setImages([...images, ...gallery.genImages(paginateCursor)]);
     }
+  }
+
+  function galleryTypeHandler() {
+    if (galleryType === "desc") setGalleryType("asc")
+    else setGalleryType("desc");
+    ScrollToTop();
   }
 
   useEffect(() => {
@@ -45,28 +46,44 @@ export default function Gallery() {
     return () => window.removeEventListener("scroll", paginateHandler);
   }, [images]);
 
+  useEffect(() => {
+    const gallery = selectGallery(galleryType);
+    setPaginateCursor(gallery.initSecondPaginate());
+    setImages(gallery.genImages(gallery.initFirstPaginate()));
+  }, [galleryType])
+
   return (
     <>
       <React.StrictMode>
-        <RootLayout metadata={metadata} >
-          <div className="gallery-l-container">
-            {images.map((image) => {
-              return <ImageGallery key={image.id} {...image} />;
-            })}
-          </div>
+        <RootLayout metadata={metadata}>
+          <>
+            <div className="gallery-l-container">
+              {images.map((image) => {
+                return <ImageGallery key={image.id} {...image} />;
+              })}
+            </div>
+            <div className="gallery-l-button">
+              <SortButton
+                type={galleryType}
+                galleryTypeHandler={galleryTypeHandler}
+              />
+              <GoTopButton />
+            </div>
+          </>
         </RootLayout>
       </React.StrictMode>
     </>
   );
 }
 
-function genImages(cursor: paginateProp) {
-  let tmp: ImageGalleryProp[] = [];
-  for (let i = cursor.start; i > cursor.end && i > 0; i--) {
-    tmp.push({
-      id: i,
-      alt: i.toString(),
-    });
+function selectGallery(type: "asc" | "desc") {
+  switch (type) {
+    case "asc":
+      return AscGallery;
+    case "desc":
+      return DescGallery;
+
+    default:
+      throw new Error(`Invalide gallery type ${type}`);
   }
-  return tmp;
 }

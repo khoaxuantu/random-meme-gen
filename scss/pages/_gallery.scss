@@ -1,4 +1,5 @@
-@use '../common/utils' as *;
+@use "../common/utils" as *;
+@use "../common/var" as *;
 
 .gallery {
   &-l {
@@ -13,6 +14,14 @@
       display: flex;
       flex-wrap: wrap;
     }
+
+    &-button {
+      position: fixed;
+      right: 2rem;
+      bottom: 2rem;
+      z-index: 2;
+      width: 4rem;
+    }
   }
 
   &-c {
@@ -20,7 +29,7 @@
       flex: 1 1 auto;
       height: 260px;
       position: relative;
-      transition: all .2s;
+      transition: all 0.2s;
 
       img {
         object-fit: cover;
@@ -49,6 +58,21 @@
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         border-radius: 10px;
+      }
+    }
+
+    &-button {
+      border-radius: 50%;
+      aspect-ratio: 1;
+      padding: 0.5rem;
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px,
+        rgba(0, 0, 0, 0.24) 0px 1px 2px;
+      width: 100%;
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+          rgba(0, 0, 0, 0.23) 0px 3px 6px;
       }
     }
   }
