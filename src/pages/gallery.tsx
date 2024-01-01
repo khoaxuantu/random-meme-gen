@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import RootLayout from "@/layout";
 import { TOTAL_MEMES } from "@/utils/Common";
 import { ImageGallery, ImageGalleryProp } from "@/components/ImageGallery";
+import { Metadata } from "@/utils/Metadata";
 
 const IMG_PER_PAGE = 10;
 
 interface paginateProp {
   start: number;
   end: number;
+}
+
+const metadata: Metadata = {
+  url: "https://meme.xuankhoatu.com/gallery/"
 }
 
 // TODO sort options
@@ -43,7 +48,7 @@ export default function Gallery() {
   return (
     <>
       <React.StrictMode>
-        <RootLayout>
+        <RootLayout metadata={metadata} >
           <div className="gallery-l-container">
             {images.map((image) => {
               return <ImageGallery key={image.id} {...image} />;

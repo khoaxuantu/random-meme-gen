@@ -4,4 +4,5 @@ export interface Metadata {
   description?: string,
   author?: string,
   image?: string,
+  url?: string,
 }
