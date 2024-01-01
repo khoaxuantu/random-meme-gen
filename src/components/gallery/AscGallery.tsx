@@ -16,10 +16,9 @@ export default class AscGallery extends BaseGallery {
   }
 
   static hasMore(cursor: paginateProp): boolean {
-    const { innerHeight, scrollY } = window;
-    const { offsetHeight } = document.documentElement;
+    const { scrollTop, scrollHeight, offsetHeight } = document.documentElement;
     return (
-      innerHeight + scrollY >= offsetHeight && cursor.start <= TOTAL_MEMES
+      offsetHeight + scrollTop >= scrollHeight - 100 && cursor.start <= TOTAL_MEMES
     );
   }
 

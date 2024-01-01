@@ -36,25 +36,23 @@ export default function Gallery() {
   }
 
   function galleryTypeHandler() {
-    if (galleryType === "desc") setGalleryType("asc")
+    if (galleryType === "desc") setGalleryType("asc");
     else setGalleryType("desc");
     ScrollToTop();
   }
 
   useEffect(() => {
     window.addEventListener("scroll", paginateHandler);
-    window.addEventListener("touchmove", paginateHandler);
     return () => {
       window.removeEventListener("scroll", paginateHandler);
-      window.removeEventListener("touchmove", paginateHandler);
-    }
+    };
   }, [images]);
 
   useEffect(() => {
     const gallery = selectGallery(galleryType);
     setPaginateCursor(gallery.initSecondPaginate());
     setImages(gallery.genImages(gallery.initFirstPaginate()));
-  }, [galleryType])
+  }, [galleryType]);
 
   return (
     <>

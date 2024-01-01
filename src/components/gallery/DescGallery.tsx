@@ -24,9 +24,8 @@ export class DescGallery extends BaseGallery {
   }
 
   static hasMore(cursor: paginateProp): boolean {
-    const { innerHeight, scrollY } = window;
-    const { offsetHeight } = document.documentElement;
-    return innerHeight + scrollY >= offsetHeight && cursor.start > 0;
+    const { scrollTop, scrollHeight, offsetHeight } = document.documentElement;
+    return offsetHeight + scrollTop >= scrollHeight - 100 && cursor.start > 0;
   }
 
   static genImages(cursor: paginateProp): ImageGalleryProp[] {
