@@ -427,6 +427,7 @@ Formula: Fi = F0 * r^(i/n)
   gap: 10px;
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 24px;
 }
 .gallery-l-button {
   position: fixed;
