@@ -7,7 +7,7 @@ export class DescGallery extends BaseGallery {
     super();
     console.log("Construct descgallery");
   }
-  
+
   static initFirstPaginate() {
     return { start: TOTAL_MEMES, end: TOTAL_MEMES - IMG_PER_PAGE };
   }
@@ -24,8 +24,9 @@ export class DescGallery extends BaseGallery {
   }
 
   static hasMore(cursor: paginateProp): boolean {
-    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
-    return scrollTop + clientHeight >= scrollHeight && cursor.start > 0;
+    const { innerHeight, scrollY } = window;
+    const { offsetHeight } = document.documentElement;
+    return innerHeight + scrollY >= offsetHeight && cursor.start > 0;
   }
 
   static genImages(cursor: paginateProp): ImageGalleryProp[] {
