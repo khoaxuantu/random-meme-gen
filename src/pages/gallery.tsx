@@ -43,7 +43,11 @@ export default function Gallery() {
 
   useEffect(() => {
     window.addEventListener("scroll", paginateHandler);
-    return () => window.removeEventListener("scroll", paginateHandler);
+    window.addEventListener("touchmove", paginateHandler);
+    return () => {
+      window.removeEventListener("scroll", paginateHandler);
+      window.removeEventListener("touchmove", paginateHandler);
+    }
   }, [images]);
 
   useEffect(() => {
