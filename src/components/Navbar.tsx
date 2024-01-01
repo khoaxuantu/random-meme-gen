@@ -38,7 +38,7 @@ export default function Navbar() {
           <button className="sl-c-navbar__expand-btn" onClick={handleExpand}></button>
         </li>
         <li className="p-2 sl-c-navbar__item">
-          <a href="https://drive.google.com/drive/folders/1Em8Ni-nr8P3pM-rcw5yQI6c_GGImSW-R?usp=sharing" target="_blank">Gallery</a>
+          <a href="/gallery/">Gallery</a>
         </li>
         <li className="p-2 sl-c-navbar__item">
           <a href="https://xuankhoatu.com/about" target="_blank">Tuslipid</a>
