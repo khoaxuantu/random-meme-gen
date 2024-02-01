@@ -32,6 +32,7 @@ const result = await Bun.build({
   splitting: true,
   define: {
     "Bun.env.CDN_URL": JSON.stringify(Bun.env.CDN_URL),
+    "Bun.env.TOTAL_MEMES": JSON.stringify(Bun.env.TOTAL_MEMES),
   }
 })
 if (!result.success) {
