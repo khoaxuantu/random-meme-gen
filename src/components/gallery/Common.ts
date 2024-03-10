@@ -1,6 +1,6 @@
 import { ImageGalleryProp } from "./ImageGallery";
 
-export const IMG_PER_PAGE = 10;
+export const IMG_PER_PAGE = 15;
 
 export interface paginateProp {
   start: number;
